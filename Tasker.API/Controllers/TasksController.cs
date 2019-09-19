@@ -1,7 +1,5 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Tasker.DataAccessLayer;
 using Tasker.Model;
 using Tasker.Repository;
 
@@ -12,7 +10,7 @@ namespace Tasker.API.Controllers
     public class TasksController : ControllerBase
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
 
         public TasksController(IUnitOfWork unitOfWork)
         {
@@ -25,6 +23,6 @@ namespace Tasker.API.Controllers
             return _unitOfWork.TaskerRepository.GetAllTasks();
         }
 
-        
+
     }
 }
