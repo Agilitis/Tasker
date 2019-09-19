@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Tasker.DataAccessLayer\Tasker.DataAccessLayer.csproj" />
     <ProjectReference Include="..\Tasker.Model\Tasker.Model.csproj" />
+    <ProjectReference Include="..\Tasker.Repository\Tasker.Repository.csproj" />
   </ItemGroup>
 
 </Project>
