@@ -8,11 +8,11 @@ namespace Tasker.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class TasksController : ControllerBase
     {
         private readonly TaskerContext _context;
 
-        public ValuesController(TaskerContext context)
+        public TasksController(TaskerContext context)
         {
             _context = context;
         }
@@ -20,9 +20,6 @@ namespace Tasker.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Task>> Get()
         {
-            var myTask = new Task("Title", "desc", DateTime.Now, TaskState.Doing, 2);
-            _context.Add(myTask);
-            _context.SaveChanges();
             return _context.Tasks;
         }
 
