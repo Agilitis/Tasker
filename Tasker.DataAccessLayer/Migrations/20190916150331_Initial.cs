@@ -8,7 +8,7 @@ namespace Tasker.DataAccessLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Tasks",
+                name: "Todos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -28,7 +28,7 @@ namespace Tasker.DataAccessLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tasks");
+                name: "Todos");
         }
     }
 }

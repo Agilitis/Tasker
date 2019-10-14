@@ -11,14 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.API", "Tasker.API\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.Tests", "Tasker.Tests\Tasker.Tests.csproj", "{258AE04D-C1F6-4BAE-8DBC-22760B882C28}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Tasker.Frontend", "tasker.frontend\Tasker.Frontend.njsproj", "{AEFFD90E-8211-46D9-B1BA-0C35B39D57C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.Repository", "Tasker.Repository\Tasker.Repository.csproj", "{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.Repository", "Tasker.Repository\Tasker.Repository.csproj", "{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{62FA1F20-E6DA-4DDA-B13D-1CAB2707FC0B}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.Frontend", "Tasker.Frontend\Tasker.Frontend.csproj", "{7CE622C2-618C-4A70-A8DC-54E1D40948C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,14 +42,13 @@ Global
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEFFD90E-8211-46D9-B1BA-0C35B39D57C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEFFD90E-8211-46D9-B1BA-0C35B39D57C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEFFD90E-8211-46D9-B1BA-0C35B39D57C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEFFD90E-8211-46D9-B1BA-0C35B39D57C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CE622C2-618C-4A70-A8DC-54E1D40948C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CE622C2-618C-4A70-A8DC-54E1D40948C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CE622C2-618C-4A70-A8DC-54E1D40948C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

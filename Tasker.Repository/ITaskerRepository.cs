@@ -5,13 +5,13 @@ namespace Tasker.Repository
 {
     public interface ITaskerRepository
     {
-        Task GetTaskById(int Id);
-        IEnumerable<Task> GetAllTasks();
-        Task AddTask(Task task);
-        Task UpdateTask(Task updatedTask);
-        Task DeleteTaskById(int Id);
+        Todo Get(int Id);
+        IEnumerable<Todo> GetAll();
+        Todo Add(Todo todo);
+        Todo Update(Todo updatedTodo);
+        Todo Delete(int Id);
 
-        //Given a task with an updated priority the method should update all the other tasks' priorities
-        IList<Task> UpdateTaskPriorities(Task task);
+        //Given a todo with an updated priority the method should update all the other tasks' priorities
+        IList<Todo> UpdateTaskPriorities(Todo todo);
     }
 }

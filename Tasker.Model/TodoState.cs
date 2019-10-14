@@ -1,6 +1,6 @@
 ﻿namespace Tasker.Model
 {
-    public enum TaskState
+    public enum TodoState
     {
         Paused,
         Doing,

@@ -4,10 +4,10 @@ namespace Tasker.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly TaskerContext _context;
+        private readonly TodoContext _context;
 
 
-        public UnitOfWork(TaskerContext context)
+        public UnitOfWork(TodoContext context)
         {
             _context = context;
         }
@@ -16,7 +16,7 @@ namespace Tasker.Repository
         {
             get
             {
-                return new TaskRepository(_context);
+                return new TodoRepository(_context);
             }
             set => TaskerRepository = value;
         }

@@ -8,7 +8,7 @@ using Tasker.DataAccessLayer;
 
 namespace Tasker.DataAccessLayer.Migrations
 {
-    [DbContext(typeof(TaskerContext))]
+    [DbContext(typeof(TodoContext))]
     [Migration("20190919082103_test2")]
     partial class test2
     {
@@ -18,7 +18,7 @@ namespace Tasker.DataAccessLayer.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity("Tasker.Model.Task", b =>
+            modelBuilder.Entity("Tasker.Model.Todo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -35,7 +35,7 @@ namespace Tasker.DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("Todos");
                 });
 #pragma warning restore 612, 618
         }

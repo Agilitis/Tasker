@@ -9,8 +9,8 @@ using Tasker.DataAccessLayer;
 namespace Tasker.DataAccessLayer.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    [Migration("20190916150331_Initial")]
-    partial class Initial
+    [Migration("20191007140929_rename")]
+    partial class rename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

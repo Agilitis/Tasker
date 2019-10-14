@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasker.DataAccessLayer;
 
 namespace Tasker.DataAccessLayer.Migrations
 {
     [DbContext(typeof(TodoContext))]
-    partial class TaskerContextModelSnapshot : ModelSnapshot
+    [Migration("20191014111831_changeidtoguid")]
+    partial class changeidtoguid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
