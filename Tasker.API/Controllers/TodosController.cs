@@ -30,6 +30,14 @@ namespace Tasker.API.Controllers
             return _unitOfWork.TaskerRepository.Get(Id);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<Todo>> Post(Todo todo)
+        {
+            _unitOfWork.TaskerRepository.Add(todo);
+            _unitOfWork.Save();
+            return todo;
+        }
+
         [HttpPut("{Id}")]
         public async Task<ActionResult<Todo>> Post(int Id,Todo todo)
         {

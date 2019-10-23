@@ -22,12 +22,36 @@ export class TodoItem extends Component {
         this.populateTodos();
     }
 
-    deleteTodo(todo) {
-        console.log(todo);
+    async deleteTodo(todo) {
+        await fetch('https://localhost:5001/api/todos/' + todo.id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE'
+        });
+        this.populateTodos();
     }
 
-    selectStatE(state) {
+    async selectState(todo, state) {
         console.log(state);
+        var data = JSON.stringify({
+            "title": todo.title,
+            "description": todo.description,
+            "deadline": todo.deadline,
+            "priority": "2",
+            "state": state.value,
+            "id": todo.id
+        });
+        console.log(data);
+        await fetch('https://localhost:5001/api/todos/'+todo.id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: data,
+        });
     }
 
 
@@ -58,7 +82,7 @@ export class TodoItem extends Component {
                             <td>{todo.title}</td>
                             <td>{todo.description}</td>
                             <td>{todo.deadline}</td>
-                            <td><Dropdown options={options} onChange={this.selectState} value={options[todo.state]} placeholder="Select an option" /></td>
+                            <td><Dropdown options={options} onChange={(state) => { this.selectState(todo, state) }} value={options[todo.state]} placeholder="Select an option" /></td>
                             <td><button onClick={() => { this.deleteTodo(todo) }}>Delete</button></td>
                             
                             
