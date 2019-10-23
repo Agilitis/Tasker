@@ -20,7 +20,7 @@ namespace Tasker.Repository
 
         public Todo Get(int Id)
         {
-            throw new System.NotImplementedException();
+            return _context.Todos.Find(Id);
         }
 
         public IEnumerable<Todo> GetAll()
@@ -36,12 +36,15 @@ namespace Tasker.Repository
 
         public Todo Update(Todo updatedTodo)
         {
-            throw new System.NotImplementedException();
+            _context.Todos.Update(updatedTodo);
+            return updatedTodo;
         }
 
         public Todo Delete(int Id)
         {
-            throw new System.NotImplementedException();
+            var todoToDelete = _context.Todos.Find(Id);
+            _context.Todos.Remove(todoToDelete);
+            return todoToDelete;
         }
 
         public IList<Todo> UpdateTaskPriorities(Todo todo)

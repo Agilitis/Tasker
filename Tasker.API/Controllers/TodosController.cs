@@ -24,12 +24,30 @@ namespace Tasker.API.Controllers
             return _unitOfWork.TaskerRepository.GetAll();
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Todo>> Post(Todo todo)
+        [HttpGet("{Id}")]
+        public ActionResult<Todo> Get(int Id)
         {
-            _unitOfWork.TaskerRepository.Add(todo);
+            return _unitOfWork.TaskerRepository.Get(Id);
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<ActionResult<Todo>> Post(int Id,Todo todo)
+        {
+            if (Id != todo.Id)
+            {
+                return BadRequest();
+            }
+            _unitOfWork.TaskerRepository.Update(todo);
             _unitOfWork.Save();
             return todo;
+        }
+
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult<Todo>> Delete(int Id)
+        {
+            var todoToDelete =_unitOfWork.TaskerRepository.Delete(Id);
+            _unitOfWork.Save();
+            return todoToDelete;
         }
 
 
