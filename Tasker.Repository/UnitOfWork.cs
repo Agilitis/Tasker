@@ -16,7 +16,7 @@ namespace Tasker.Repository
         {
             get
             {
-                return new TodoRepository(_context);
+                return new TaskerRepository(_context);
             }
             set => TaskerRepository = value;
         }

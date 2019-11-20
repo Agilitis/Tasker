@@ -24,10 +24,9 @@ export class TodoForm extends React.Component {
             "title": event.target.title.value,
             "description": event.target.description.value,
             "deadline": this.state.date,
-            "priority": "2",
+            "priority": this.state.priority,
             "state": "1"
         });
-        console.log(data);
         await fetch('https://localhost:5001/api/todos', {
             headers: {
                 'Accept': 'application/json',

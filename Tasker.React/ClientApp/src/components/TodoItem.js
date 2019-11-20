@@ -2,9 +2,13 @@
 import { TodoForm } from './TodoForm';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
+import ReactTable from 'react-table'
+
+
 
 export class TodoItem extends Component {
     static displayName = TodoItem.name;
+
 
     callbackFunction = async (todo) => {
         const response = await fetch('https://localhost:5001/api/todos');
@@ -15,7 +19,7 @@ export class TodoItem extends Component {
     constructor(props) {
         super(props);
         this.state = { todos: [], loading: true };
-       
+
     }
 
     componentDidMount() {
@@ -33,18 +37,72 @@ export class TodoItem extends Component {
         this.populateTodos();
     }
 
-    async selectState(todo, state) {
-        console.log(state);
+
+
+    async todoHigherPriority(todo) {
+        todo.priority++;
+        await fetch('https://localhost:5001/api/todos/' + todo.id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE'
+        });
         var data = JSON.stringify({
             "title": todo.title,
             "description": todo.description,
             "deadline": todo.deadline,
-            "priority": "2",
+            "priority": todo.priority,
+            "state": todo.state
+        });
+        await fetch('https://localhost:5001/api/todos', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: data,
+        });
+        this.populateTodos();
+    }
+
+    async todoLowerPrioririty(todo) {
+        todo.priority--;
+        await fetch('https://localhost:5001/api/todos/' + todo.id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'DELETE'
+        });
+        var data = JSON.stringify({
+            "title": todo.title,
+            "description": todo.description,
+            "deadline": todo.deadline,
+            "priority": todo.priority,
+            "state": todo.state
+        });
+        await fetch('https://localhost:5001/api/todos', {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: data,
+        });
+        this.populateTodos();
+    }
+
+    async selectState(todo, state) {
+        var data = JSON.stringify({
+            "title": todo.title,
+            "description": todo.description,
+            "deadline": todo.deadline,
+            "priority": todo.priority,
             "state": state.value,
             "id": todo.id
         });
-        console.log(data);
-        await fetch('https://localhost:5001/api/todos/'+todo.id, {
+        await fetch('https://localhost:5001/api/todos/' + todo.id, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -52,13 +110,16 @@ export class TodoItem extends Component {
             method: 'PUT',
             body: data,
         });
+        this.populateTodos();
     }
 
 
 
-
-
     renderTodos(todos) {
+        todos = todos.sort((a, b) => {
+            return a.priority - b.priority;
+        });
+        console.log(todos);
         const options = [
             { value: 0, label: "Paused" },
             { value: 1, label: "Doing" },
@@ -67,35 +128,35 @@ export class TodoItem extends Component {
         ]
         return (
             <Fragment>
-            <table className='table table-striped' aria-labelledby="tabelLabel">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Deadline</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {todos.map(todo =>
-                        <tr key={todo.id}>
-                            <td>{todo.title}</td>
-                            <td>{todo.description}</td>
-                            <td>{todo.deadline}</td>
-                            <td><Dropdown options={options} onChange={(state) => { this.selectState(todo, state) }} value={options[todo.state]} placeholder="Select an option" /></td>
-                            <td><button onClick={() => { this.deleteTodo(todo) }}>Delete</button></td>
-                            
-                            
+                <table className='table table-striped' aria-labelledby="tabelLabel">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Deadline</th>
+                            <th>Status</th>
                         </tr>
-                    )}
-                </tbody>
-               
+                    </thead>
+                    <tbody>
+                        {todos.map(todo =>
+                            <tr key={todo.priority}>
+                                <td>{todo.title}</td>
+                                <td>{todo.description}</td>
+                                <td>{todo.deadline}</td>
+                                <td><Dropdown options={options} onChange={(state) => { this.selectState(todo, state) }} value={options[todo.state]} placeholder="Select an option" /></td>
+                                <td><button onClick={() => { this.deleteTodo(todo) }}>Delete</button></td>
+                                <td><button onClick={() => { this.todoLowerPrioririty(todo) }}>^</button></td>
+                                <td><button onClick={() => { this.todoHigherPriority(todo) }}>v</button></td>
+                            </tr>
+                        )}
+                    </tbody>
+
                 </table>
                 <TodoForm refreshCallback={this.callbackFunction} />
             </Fragment>
-           
-           
-            
+
+
+
         );
     }
 

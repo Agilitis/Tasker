@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tasker.DataAccessLayer;
@@ -7,12 +8,12 @@ using Tasker.Model;
 
 namespace Tasker.Repository
 {
-    public class TodoRepository : ITaskerRepository
+    public class TaskerRepository : ITaskerRepository
     {
         private readonly TodoContext _context;
 
 
-        public TodoRepository(TodoContext context)
+        public TaskerRepository(TodoContext context)
         {
             _context = context;
         }
@@ -25,11 +26,26 @@ namespace Tasker.Repository
 
         public IEnumerable<Todo> GetAll()
         {
-            return _context.Todos.ToList();
+            return _context.Todos.AsNoTracking();
         }
 
         public Todo Add(Todo todo)
         {
+            var todoWithSamePriority = _context.Todos
+                .Where(t => t.Priority == todo.Priority)
+                .FirstOrDefault();
+
+            if(todoWithSamePriority != null)
+            {
+                var todos = _context.Todos
+                    .Where(t => t.Priority >= todo.Priority)
+                    .ToList();
+                foreach (var currentTodo in todos)
+                {
+                    currentTodo.Priority++;
+                }
+
+            }
             _context.Todos.Add(todo);
             return todo;
         }
@@ -43,6 +59,13 @@ namespace Tasker.Repository
         public Todo Delete(int Id)
         {
             var todoToDelete = _context.Todos.Find(Id);
+            var todos = _context.Todos
+                    .Where(t => t.Priority >= todoToDelete.Priority)
+                    .ToList();
+            foreach (var currentTodo in todos)
+            {
+                currentTodo.Priority--;
+            }
             _context.Todos.Remove(todoToDelete);
             return todoToDelete;
         }
