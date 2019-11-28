@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Tasker.Model;
 using Tasker.Repository;
 
-namespace Tasker.API.Controllers
+namespace Tasker.React
 {
     [Route("api/todos")]
     [ApiController]
@@ -31,7 +31,7 @@ namespace Tasker.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Todo>> Post(Todo todo)
+        public ActionResult<Todo> Post(Todo todo)
         {
             _unitOfWork.TaskerRepository.Add(todo);
             _unitOfWork.Save();
@@ -39,7 +39,7 @@ namespace Tasker.API.Controllers
         }
 
         [HttpPut("{Id}")]
-        public async Task<ActionResult<Todo>> Post(int Id,Todo todo)
+        public ActionResult<Todo> Put(int Id,Todo todo)
         {
             if (Id != todo.Id)
             {

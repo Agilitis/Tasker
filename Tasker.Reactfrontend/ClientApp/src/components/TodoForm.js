@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export class TodoForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { title: '', description: '', deadline: '', priority: 1, state: '', date: new Date() };
+        this.state = { title: '', description: '', deadline: '', priority: 1, state: '', date: Date.now() };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -40,8 +40,8 @@ export class TodoForm extends React.Component {
     }
 
 
-
     render() {
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
@@ -58,7 +58,7 @@ export class TodoForm extends React.Component {
                 </label>
                 <label>
                     Deadline:
-                <DatePicker selected={Date.now()} onChange={date => this.setState({date: date})} />
+                <DatePicker selected={this.state.date} onChange={date => this.setState({ date: date })} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>

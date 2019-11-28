@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.Model", "Tasker.Mode
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.DataAccessLayer", "Tasker.DataAccessLayer\Tasker.DataAccessLayer.csproj", "{57F12C02-41CA-4417-8D07-E3FBA3512159}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.API", "Tasker.API\Tasker.API.csproj", "{1854DA3D-058A-462D-87FB-17AA7754C2D0}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.Tests", "Tasker.Tests\Tasker.Tests.csproj", "{258AE04D-C1F6-4BAE-8DBC-22760B882C28}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.Repository", "Tasker.Repository\Tasker.Repository.csproj", "{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}"
@@ -16,12 +14,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{62FA1F20-E6DA-4DDA-B13D-1CAB2707FC0B}"
 	ProjectSection(SolutionItems) = preProject
 		.dockerignore = .dockerignore
-		Tasker.React\Dockerfile = Tasker.React\Dockerfile
+		docker-compose.yml = docker-compose.yml
 		Dockerfile = Dockerfile
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasker.React", "Tasker.React\Tasker.React.csproj", "{AB8D4C55-3AEF-4313-BC89-6666D7F50F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasker.Reactfrontend", "Tasker.Reactfrontend\Tasker.Reactfrontend.csproj", "{9CF17160-C7E7-4113-9E33-C1180B60C6E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{57F12C02-41CA-4417-8D07-E3FBA3512159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F12C02-41CA-4417-8D07-E3FBA3512159}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F12C02-41CA-4417-8D07-E3FBA3512159}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1854DA3D-058A-462D-87FB-17AA7754C2D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1854DA3D-058A-462D-87FB-17AA7754C2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1854DA3D-058A-462D-87FB-17AA7754C2D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1854DA3D-058A-462D-87FB-17AA7754C2D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258AE04D-C1F6-4BAE-8DBC-22760B882C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +43,10 @@ Global
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1BBC809-9BFE-49C9-BA49-EAD7C0F35994}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB8D4C55-3AEF-4313-BC89-6666D7F50F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB8D4C55-3AEF-4313-BC89-6666D7F50F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB8D4C55-3AEF-4313-BC89-6666D7F50F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB8D4C55-3AEF-4313-BC89-6666D7F50F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF17160-C7E7-4113-9E33-C1180B60C6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF17160-C7E7-4113-9E33-C1180B60C6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF17160-C7E7-4113-9E33-C1180B60C6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF17160-C7E7-4113-9E33-C1180B60C6E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

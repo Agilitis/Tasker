@@ -22,5 +22,10 @@ namespace Tasker.Model
             this.Priority = priority;
         }
 
+        public Todo()
+        {
+
+        }
+
     }
 }

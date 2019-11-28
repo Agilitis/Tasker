@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using Tasker.Model;
+using System.IO;
 
 namespace Tasker.DataAccessLayer
 {
@@ -11,7 +12,8 @@ namespace Tasker.DataAccessLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source=../Tasker.DataAccessLayer/Tasker.Database.db");
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            optionsBuilder.UseSqlite($"Data Source=/src/Tasker.DataAccessLayer/Tasker.Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  frontend:
+    build: ./Tasker.React
+    ports:
+    - "8080:443"
+  backend:
+    build: .
+    ports:
+    - "8000:80"
