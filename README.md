@@ -18,25 +18,8 @@ You will need:
 
 ### Installing
 
-docker build -f .\Tasker.WebApp\Dockerfile -t tasker:latest .
+Open the project in Visual Studio and start it by docker.
 
-docker run -t -v Tasker.Reactfrontend:/app -v /:/src -e "ASPNETCORE_ENVIRONMENT=Development" -p 63617:80 -p 44366:443 taskerreactfrontend:dev
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
