@@ -8,20 +8,19 @@ RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
 RUN apt-get -y install nodejs
 
-COPY ["Tasker.Reactfrontend/Tasker.Reactfrontend.csproj", "Tasker.Reactfrontend/"]
+COPY ["Tasker.WebApp/Tasker.WebApp.csproj", "Tasker.WebApp/"]
 COPY ["Tasker.Repository/Tasker.Repository.csproj", "Tasker.Repository/"]
 COPY ["Tasker.DataAccessLayer/Tasker.DataAccessLayer.csproj", "Tasker.DataAccessLayer/"]
 COPY ["Tasker.Model/Tasker.Model.csproj", "Tasker.Model/"]
-RUN dotnet restore "Tasker.Reactfrontend/Tasker.Reactfrontend.csproj"
+RUN dotnet restore "Tasker.WebApp/Tasker.WebApp.csproj"
 COPY ["Tasker.Reactfrontend/ClientApp/package.json", "ClientApp/"]
 COPY ["Tasker.Reactfrontend/ClientApp/package-lock.json", "ClientApp/"]
 
-RUN npm install
 
 COPY . .
 
-WORKDIR "/src/Tasker.Reactfrontend"
+WORKDIR "/src/Tasker.WebApp"
 
-RUN dotnet build "Tasker.Reactfrontend.csproj" -c Release -o /app/build
-
+RUN dotnet build "Tasker.WebApp.csproj" -c Release -o /app/build
+RUN ls
 ENTRYPOINT ["dotnet", "run"]
