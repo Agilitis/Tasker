@@ -56,9 +56,13 @@ namespace Tasker.Repository
             return updatedTodo;
         }
 
-        public Todo Delete(int Id)
+        public void Delete(int id)
         {
-            var todoToDelete = _context.Todos.Find(Id);
+            var todoToDelete = _context.Todos.Find(id);
+            if(todoToDelete == null)
+            {
+                return;
+            }
             var todos = _context.Todos
                     .Where(t => t.Priority >= todoToDelete.Priority)
                     .ToList();
@@ -67,7 +71,6 @@ namespace Tasker.Repository
                 currentTodo.Priority--;
             }
             _context.Todos.Remove(todoToDelete);
-            return todoToDelete;
         }
 
         public IList<Todo> UpdateTaskPriorities(Todo todo)

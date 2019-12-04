@@ -25,9 +25,9 @@ namespace Tasker.React
         }
 
         [HttpGet("{Id}")]
-        public ActionResult<Todo> Get(int Id)
+        public ActionResult<Todo> Get(int id)
         {
-            return _unitOfWork.TaskerRepository.Get(Id);
+            return _unitOfWork.TaskerRepository.Get(id);
         }
 
         [HttpPost]
@@ -39,9 +39,9 @@ namespace Tasker.React
         }
 
         [HttpPut("{Id}")]
-        public ActionResult<Todo> Put(int Id,Todo todo)
+        public ActionResult<Todo> Put(int id,Todo todo)
         {
-            if (Id != todo.Id)
+            if (id != todo.Id)
             {
                 return BadRequest();
             }
@@ -51,11 +51,19 @@ namespace Tasker.React
         }
 
         [HttpDelete("{Id}")]
-        public ActionResult<Todo> Delete(int Id)
+        public ActionResult Delete(int id)
         {
-            var todoToDelete =_unitOfWork.TaskerRepository.Delete(Id);
-            _unitOfWork.Save();
-            return todoToDelete;
+            if (_unitOfWork.TaskerRepository.Get(id) != null)
+            {
+                _unitOfWork.TaskerRepository.Delete(id);
+                _unitOfWork.Save();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
+            
         }
 
 

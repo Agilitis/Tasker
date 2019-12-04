@@ -8,12 +8,20 @@ namespace Tasker.DataAccessLayer
 {
     public class TodoContext : DbContext
     {
+        private DbContextOptions<TodoContext> options;
+
+        public TodoContext(DbContextOptions<TodoContext> options) : base(options)
+        {
+        }
+
         public DbSet<Todo> Todos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            optionsBuilder.UseSqlite($"Data Source=../Tasker.DataAccessLayer/Tasker.Database.db");
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite($"Data Source=../Tasker.DataAccessLayer/Tasker.Database.db");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
