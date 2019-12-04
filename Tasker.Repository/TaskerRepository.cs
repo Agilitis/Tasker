@@ -44,7 +44,6 @@ namespace Tasker.Repository
                 {
                     currentTodo.Priority++;
                 }
-
             }
             _context.Todos.Add(todo);
             return todo;
@@ -52,7 +51,23 @@ namespace Tasker.Repository
 
         public Todo Update(Todo updatedTodo)
         {
-            _context.Todos.Update(updatedTodo);
+            var todoWithSamePriority = _context.Todos
+                .Where(t => t.Priority == updatedTodo.Priority)
+                .FirstOrDefault();
+
+            if (updatedTodo.Id == todoWithSamePriority?.Id)
+            {
+                todoWithSamePriority.State = updatedTodo.State;
+                _context.Todos.Update(todoWithSamePriority);
+                return updatedTodo;
+            }
+            var oldTodo = Get(updatedTodo.Id);
+            if (todoWithSamePriority != null)
+            {
+                var priority = todoWithSamePriority.Priority;
+                todoWithSamePriority.Priority = oldTodo.Priority;
+                oldTodo.Priority = priority;
+            }
             return updatedTodo;
         }
 
@@ -73,9 +88,5 @@ namespace Tasker.Repository
             _context.Todos.Remove(todoToDelete);
         }
 
-        public IList<Todo> UpdateTaskPriorities(Todo todo)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

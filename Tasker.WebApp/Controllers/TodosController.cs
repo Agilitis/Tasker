@@ -40,7 +40,7 @@ namespace Tasker.React
         }
 
         [HttpPut("{Id}")]
-        public ActionResult<Todo> Put(int id,Todo todo)
+        public ActionResult<Todo> Put(int id,[FromBody]Todo todo)
         {
             if (id != todo.Id)
             {

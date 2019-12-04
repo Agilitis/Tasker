@@ -42,43 +42,36 @@ export class TodoItem extends Component {
 
     async todoHigherPriority(todo) {
         todo.priority++;
-        await fetch(URL + todo.id, {
-            headers: HEADER,
-            method: 'DELETE'
-        });
         var data = JSON.stringify({
             "title": todo.title,
             "description": todo.description,
             "deadline": todo.deadline,
             "priority": todo.priority,
-            "state": todo.state
+            "state": todo.state,
+            "id": todo.id
         });
-        console.log(data);
-        await fetch(URL, {
+        await fetch(URL + todo.id, {
             headers: HEADER,
-            method: 'POST',
-            body: data,
+            method: 'PUT',
+            body: data
         });
         this.populateTodos();
     }
 
     async todoLowerPrioririty(todo) {
         todo.priority--;
-        await fetch(URL + todo.id, {
-            headers: HEADER,
-            method: 'DELETE'
-        });
         var data = JSON.stringify({
             "title": todo.title,
             "description": todo.description,
             "deadline": todo.deadline,
             "priority": todo.priority,
-            "state": todo.state
+            "state": todo.state,
+            "id": todo.id
         });
-        await fetch(URL, {
+        await fetch(URL + todo.id, {
             headers: HEADER,
-            method: 'POST',
-            body: data,
+            method: 'PUT',
+            body: data
         });
         this.populateTodos();
     }
@@ -97,7 +90,7 @@ export class TodoItem extends Component {
             method: 'PUT',
             body: data,
         });
-        this.populateTodos();
+        
     }
 
 
