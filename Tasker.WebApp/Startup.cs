@@ -62,7 +62,7 @@ namespace Tasker.Reactfrontend
                 app.UseHsts();
             }
             app.UseCors(MyAllowSpecificOrigins);
-            app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

@@ -33,6 +33,7 @@ namespace Tasker.React
         [HttpPost]
         public ActionResult<Todo> Post(Todo todo)
         {
+            System.Console.WriteLine(todo);
             _unitOfWork.TaskerRepository.Add(todo);
             _unitOfWork.Save();
             return todo;

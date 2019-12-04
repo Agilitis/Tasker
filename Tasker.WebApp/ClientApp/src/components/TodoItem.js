@@ -53,6 +53,7 @@ export class TodoItem extends Component {
             "priority": todo.priority,
             "state": todo.state
         });
+        console.log(data);
         await fetch(URL, {
             headers: HEADER,
             method: 'POST',
@@ -105,7 +106,6 @@ export class TodoItem extends Component {
         todos = todos.sort((a, b) => {
             return a.priority - b.priority;
         });
-        console.log(todos);
         const options = [
             { value: 0, label: "Paused" },
             { value: 1, label: "Doing" },
@@ -166,7 +166,6 @@ export class TodoItem extends Component {
     async populateTodos() {
         const response = await fetch(URL);
         const data = await response.json();
-        console.log(data);
         this.setState({ todos: data, loading: false });
     }
 }

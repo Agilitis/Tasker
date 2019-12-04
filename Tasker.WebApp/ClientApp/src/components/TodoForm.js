@@ -7,13 +7,13 @@ const HEADER = {
     'Content-Type': 'application/json'
 };
 
-const URL = "http://localhost:5000/api/todos"
+const URL = "http://localhost:5000/api/todos/"
 
 
 export class TodoForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { title: '', description: '', deadline: '', priority: 1, state: '', date: Date.now() };
+        this.state = { title: '', description: '', deadline: '', priority: 1, state: '', date: null };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -34,13 +34,18 @@ export class TodoForm extends React.Component {
             "priority": this.state.priority,
             "state": 1
         });
+        console.log(data);
         await fetch(URL, {
             headers: HEADER,
             method: 'POST',
-            body: data,
+            mode: 'cors',
+            body: data
+        }).then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
         });
         this.props.refreshCallback(data);
-
     }
 
 
