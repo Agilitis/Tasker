@@ -2,6 +2,13 @@
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
+const HEADER = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+};
+
+const URL = "http://localhost:5000/api/todos"
+
 
 export class TodoForm extends React.Component {
     constructor(props) {
@@ -27,11 +34,8 @@ export class TodoForm extends React.Component {
             "priority": this.state.priority,
             "state": 1
         });
-        await fetch('/api/todos', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL, {
+            headers: HEADER,
             method: 'POST',
             body: data,
         });

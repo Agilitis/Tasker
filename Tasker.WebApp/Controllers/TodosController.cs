@@ -51,7 +51,7 @@ namespace Tasker.React
         }
 
         [HttpDelete("{Id}")]
-        public async Task<ActionResult<Todo>> Delete(int Id)
+        public ActionResult<Todo> Delete(int Id)
         {
             var todoToDelete =_unitOfWork.TaskerRepository.Delete(Id);
             _unitOfWork.Save();

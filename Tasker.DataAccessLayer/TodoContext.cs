@@ -13,7 +13,7 @@ namespace Tasker.DataAccessLayer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             Console.WriteLine(Directory.GetCurrentDirectory());
-            optionsBuilder.UseSqlite($"Data Source=/src/Tasker.DataAccessLayer/Tasker.Database.db");
+            optionsBuilder.UseSqlite($"Data Source=../Tasker.DataAccessLayer/Tasker.Database.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

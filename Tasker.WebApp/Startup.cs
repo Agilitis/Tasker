@@ -12,6 +12,7 @@ namespace Tasker.Reactfrontend
 {
     public class Startup
     {
+        public string MyAllowSpecificOrigins { get; set; } = "MyCors";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,6 +32,20 @@ namespace Tasker.Reactfrontend
             });
             services.AddDbContext<TodoContext>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddCors(options =>
+        {
+            options.AddPolicy(MyAllowSpecificOrigins,
+            builder =>
+            {
+                builder.WithOrigins("https://localhost:5001")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowAnyOrigin();
+            });
+        });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +61,7 @@ namespace Tasker.Reactfrontend
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();

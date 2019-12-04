@@ -2,16 +2,20 @@
 import { TodoForm } from './TodoForm';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
-import ReactTable from 'react-table'
 
+const HEADER = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+};
 
+const URL = "http://localhost:5000/api/todos/"
 
 export class TodoItem extends Component {
     static displayName = TodoItem.name;
 
 
     callbackFunction = async (todo) => {
-        const response = await fetch('/api/todos');
+        const response = await fetch(URL);
         let data = await response.json();
         this.setState({ todos: data, loading: false });
     }
@@ -27,11 +31,8 @@ export class TodoItem extends Component {
     }
 
     async deleteTodo(todo) {
-        await fetch('/api/todos/' + todo.id, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL + todo.id, {
+            headers: HEADER,
             method: 'DELETE'
         });
         this.populateTodos();
@@ -41,11 +42,8 @@ export class TodoItem extends Component {
 
     async todoHigherPriority(todo) {
         todo.priority++;
-        await fetch('/api/todos/' + todo.id, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL + todo.id, {
+            headers: HEADER,
             method: 'DELETE'
         });
         var data = JSON.stringify({
@@ -55,11 +53,8 @@ export class TodoItem extends Component {
             "priority": todo.priority,
             "state": todo.state
         });
-        await fetch('/api/todos', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL, {
+            headers: HEADER,
             method: 'POST',
             body: data,
         });
@@ -68,11 +63,8 @@ export class TodoItem extends Component {
 
     async todoLowerPrioririty(todo) {
         todo.priority--;
-        await fetch('/api/todos/' + todo.id, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL + todo.id, {
+            headers: HEADER,
             method: 'DELETE'
         });
         var data = JSON.stringify({
@@ -82,11 +74,8 @@ export class TodoItem extends Component {
             "priority": todo.priority,
             "state": todo.state
         });
-        await fetch('/api/todos', {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL, {
+            headers: HEADER,
             method: 'POST',
             body: data,
         });
@@ -102,11 +91,8 @@ export class TodoItem extends Component {
             "state": state.value,
             "id": todo.id
         });
-        await fetch('/api/todos/' + todo.id, {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
+        await fetch(URL + todo.id, {
+            headers: HEADER,
             method: 'PUT',
             body: data,
         });
@@ -178,7 +164,7 @@ export class TodoItem extends Component {
     }
 
     async populateTodos() {
-        const response = await fetch('/api/todos');
+        const response = await fetch(URL);
         const data = await response.json();
         console.log(data);
         this.setState({ todos: data, loading: false });
