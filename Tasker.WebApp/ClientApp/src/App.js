@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
-import { TodoItem } from './components/TodoItem';
+import { TodoPage } from './components/TodoPage';
 
 import './custom.css'
 
@@ -9,7 +9,7 @@ export default class App extends Component {
 
     render() {
         return (
-            <Route exact path='/' component={TodoItem} />
+            <Route exact path='/' component={TodoPage} />
         );
     }
 }
