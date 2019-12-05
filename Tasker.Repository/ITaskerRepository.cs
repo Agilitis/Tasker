@@ -9,9 +9,8 @@ namespace Tasker.Repository
         IEnumerable<Todo> GetAll();
         Todo Add(Todo todo);
         Todo Update(Todo updatedTodo);
-        Todo Delete(int Id);
+        void Delete(int Id);
 
-        //Given a todo with an updated priority the method should update all the other tasks' priorities
-        IList<Todo> UpdateTaskPriorities(Todo todo);
+
     }
 }
